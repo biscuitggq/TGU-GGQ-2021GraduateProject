@@ -1,0 +1,25 @@
+2021-03-31 23:21:16.042  INFO 11016 --- [main] com.example.Application                  : Starting Application on SG0001 with PID 11016 (D:\bissshe\target\classes started by biscu in D:\bissshe)
+2021-03-31 23:21:16.052  INFO 11016 --- [main] com.example.Application                  : No active profile set, falling back to default profiles: default
+2021-03-31 23:21:16.967  WARN 11016 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.example]' package. Please check your configuration.
+2021-03-31 23:21:17.794  INFO 11016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2021-03-31 23:21:17.819  INFO 11016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-03-31 23:21:17.820  INFO 11016 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
+2021-03-31 23:21:17.828  INFO 11016 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.26] using APR version [1.7.0].
+2021-03-31 23:21:17.828  INFO 11016 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2021-03-31 23:21:17.829  INFO 11016 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2021-03-31 23:21:17.840  INFO 11016 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1i  8 Dec 2020]
+2021-03-31 23:21:17.932  INFO 11016 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-03-31 23:21:17.932  INFO 11016 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1830 ms
+2021-03-31 23:21:17.957  INFO 11016 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2021-03-31 23:21:17.962  INFO 11016 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-03-31 23:21:17.962  INFO 11016 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-03-31 23:21:17.962  INFO 11016 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
+2021-03-31 23:21:17.962  INFO 11016 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-03-31 23:21:19.073  INFO 11016 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-31 23:21:19.404  INFO 11016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2021-03-31 23:21:19.407  INFO 11016 --- [main] com.example.Application                  : Started Application in 3.992 seconds (JVM running for 5.684)
+2021-03-31 23:21:41.530  INFO 11016 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-03-31 23:21:41.530  INFO 11016 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-03-31 23:21:41.538  INFO 11016 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2021-03-31 23:21:42.071  INFO 11016 --- [http-nio-8888-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-03-31 23:21:42.275  INFO 11016 --- [http-nio-8888-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
