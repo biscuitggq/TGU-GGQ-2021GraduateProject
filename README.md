@@ -6,3 +6,5 @@ B站系统讲解链接：https://www.bilibili.com/video/BV1Pp4y1k7zv
 
 ## 系统启动：
 http://localhost:8888/front/index.html
+
+##真难顶，求求怎么敏感词识别啊
