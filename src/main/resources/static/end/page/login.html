@@ -18,7 +18,7 @@
 <div id="app" class="container" v-cloak>
     <div class="row text-center " style="padding-top:100px;">
         <div class="col-md-12">
-           <h2>欢迎登陆后台管理系统</h2>
+           <h2>欢迎登陆好味道美食网</h2>
         </div>
     </div>
     <div class="row ">
@@ -37,7 +37,7 @@
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <input type="password" class="form-control" v-model="user.password" placeholder=" 密码"/>
                     </div>
-                    <h5>请选择角色</h5>
+                    <h5>登录身份</h5>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <select v-model="user.level" class="form-control" style="height:35px;">
@@ -57,9 +57,11 @@
                         <a href="javascript:void(0)" @click="login" class="btn btn-primary">登陆</a>
                     </div>
                     <hr/>
-<!--                    <div style="text-align: center">-->
-<!--                        没有账号 ? <a href="register.html" target="_blank">点我注册 </a>-->
-<!--                    </div>-->
+<!--
+                    <div style="text-align: center">
+                        没有账号 ? <a href="register.html" target="_blank">点我注册 </a>
+                    </div>
+-->
 
                 </form>
             </div>
