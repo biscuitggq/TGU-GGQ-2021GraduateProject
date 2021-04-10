@@ -6,12 +6,13 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="content-type" content="no-cache, must-revalidate"/>
     <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
-    <title>饮食资讯详情</title>
+    <title>厨师信息详情</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/my.css" rel="stylesheet"/>
     <link href="css/nav.css" rel="stylesheet">
     <link href="/end/css/quill.snow.css" rel="stylesheet">
+    <link href="css/element/index.css" rel="stylesheet"/>
 
     <style>
         [v-cloak] {
@@ -30,7 +31,7 @@
         <div class="nx-header">
             <div style="display: flex;width: 100%; height: 30px; line-height: 30px; background-color: #eee;">
                 <div style="flex: 5; padding: 0 10px; color: orangered">
-                    老天津人了
+                    欢迎来到好味道美食！
                 </div>
                 <div style="flex: 5; text-align: right">
                     <span v-if="user.name">
@@ -49,11 +50,11 @@
 
             <div>
                 <ul style="display: flex; background-color: #f3d19e; height: 50px; border-radius: 8px;font-size: 20px;border: #5bc0de">
-                    <li class="nav-item"><a class="active" href="index.html">首页</a></li>
+                    <li class="nav-item"><a href="index.html">首页</a></li>
                     <li class="nav-item"><a href="advertiserInfo.html">信息发布</a></li>
                     <li class="nav-item"><a href="foodsMenuInfo.html">餐馆发布</a></li>
-                    <li class="nav-item"><a href="foodsMaterialInfo.html">新闻图文</a></li>
-<!--                    <li class="nav-item"><a href="peopelInfoDetail.html">人才发布</a></li>-->
+                    <li class="nav-item"><a href="foodsMaterialInfo.html">信息发布</a></li>
+                    <li class="nav-item"><a class="active" href="peopelInfoDetail.html">人才发布</a></li>
                     <li class="nav-item"><a href="collectInfo.html">收藏</a></li>
                     <li class="nav-item"><a href="notesInfo.html">笔记</a></li>
                     <li class="nav-item"><a href="newsInfo.html">饮食资讯</a></li>
@@ -72,39 +73,36 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body bg-gray">
-							<div class="row p-10" style="margin-bottom: 10px">
-								<div class="col-md-2">名称：</div>
-								<div class="col-md-10">{{ obj.name }}</div>
-							</div>
-							<div class="row p-10" style="margin-bottom: 10px">
-								<div class="col-md-2">内容：</div>
-								<div class="col-md-10">{{ obj.content }}</div>
-							</div>
+                            <div class="row p-10">
+                                <div class="col-md-2">姓名：</div>
+                                <div class="col-md-10">{{ obj.name }}</div>
+                            </div>
+                            <div class="row p-10">
+                                <div class="col-md-2">描述：</div>
+                                <div class="col-md-10">{{ obj.description }}</div>
+                            </div>
+                            <div class="row p-10">
+                                <div class="col-md-2">就职饭店：</div>
+                                <div class="col-md-10">{{ obj.tips }}</div>
+                            </div>
+                            <div class="row p-10">
+                                <div class="col-md-2">上传人：</div>
+                                <div class="col-md-10">{{ obj.userName }}</div>
+                            </div>
+                            <div class="row p-10">
+                                <div class="col-md-2">拿手菜：</div>
+                                <div class="col-md-10">
+                                    <img v-if="obj.fileType === 'image'" :style="'width:' + imgWidth" :src="fileSrc" alt="">
+                                    <div v-if="obj.fileType === 'video'"><video controls="controls" :src="fileSrc" style="width: 100%"></video></div>
+                                    <div v-if="obj.fileType === 'other'">该文件不支持预览，只有视频和图片支持预览</div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--richtext
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="ql-editor panel-body" id="view-notice-body">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        richText-->
-        <!-- /. 表单数据 -->
-
-        <div class="comment" v-if="isComment">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h2>评论</h2>
-                </div>
-            </div>
 
 
             <div class="comment-item">
@@ -150,9 +148,18 @@
 <script src="js/vue2.6.11/vue.min.js"></script>
 <script src="js/vue2.6.11/axios.js"></script>
 <script src="/end/js/quill.js"></script>
+<script src="js/element/index.js"></script>
 
 <script>
-
+    function msg(type, msg) {
+        Vue.prototype.$message({
+            type: type, // success（成功）、warning（警告）, error(错误)
+            message: msg,
+            duration: 2000,
+            offset: 100,
+            center: true,
+        })
+    }
     new Vue({
         el: '#wrapper',
         data: {
@@ -178,51 +185,52 @@
                     }
                 }
             });
-
-            let id = this.getQueryVariable('id');
-            this.comment.foreignId = id;
-            if (id !== 0) {
-                axios.get('/newsInfo/' + id).then(res => {
-                    if (res.data.code === '0') {
-                        let obj = res.data.data;
-                        this.obj = obj;
-                        if (obj.fileName) {
-                            if (/\.(png|jpg|gif|jpeg|webp)$/.test(obj.fileName)) {
-                                this.obj.fileType = 'image';
-                            } else if (/\.mp4$/.test(obj.fileName)) {
-                                this.obj.fileType = 'video';
-                            } else {
-                                this.obj.fileType = 'other';
-                            }
-                            this.fileSrc = '/files/download/' + obj.fileId;
-
-                            let img = new Image();
-                            img.src = this.fileSrc;
-                            let _this = this;
-                            img.onload = function(){
-                                if (img.width > 590) {
-                                    _this.imgWidth = "100%";
-                                } else {
-                                    _this.imgWidth = img.width + "px";
-                                }
-                            };
-                        }
-                        /*richText
-                        $('#view-notice-body').html(obj.content);
-                        richText*/
-                    } else {
-                        alert(res.data.msg)
-                    }
-                });
-                this.loadComments(id);
-            }
+            this.load();
         },
         methods: {
+            load() {
+                let id = this.getQueryVariable('id');
+                this.comment.foreignId = id;
+                if (id !== 0) {
+                    axios.get('/foodsMenuInfo/' + id).then(res => {
+                        if (res.data.code === '0') {
+                            let obj = res.data.data;
+                            this.obj = obj;
+                            if (obj.fileName) {
+                                if (/\.(png|jpg|gif|jpeg|webp)$/.test(obj.fileName)) {
+                                    this.obj.fileType = 'image';
+                                } else if (/\.mp4$/.test(obj.fileName)) {
+                                    this.obj.fileType = 'video';
+                                } else {
+                                    this.obj.fileType = 'other';
+                                }
+                                this.fileSrc = '/files/download/' + obj.fileId;
+
+                                let img = new Image();
+                                img.src = this.fileSrc;
+                                let _this = this;
+                                img.onload = function(){
+                                    if (img.width > 590) {
+                                        _this.imgWidth = "100%";
+                                    } else {
+                                        _this.imgWidth = img.width + "px";
+                                    }
+                                };
+                            }
+                            /*richText
+                            $('#view-notice-body').html(obj.content);
+                            richText*/
+                        } else {
+                            alert(res.data.msg)
+                        }
+                    });
+                }
+            },
             add() {
                 if (this.comment.content === '') {
                     return;
                 }
-                axios.post('/newsInfoComment', this.comment).then(res => {
+                axios.post('/foodsMenuInfoComment', this.comment).then(res => {
                     if (res.data.code === '0') {
                         this.comment.content = '';
                         this.loadComments(this.comment.foreignId);
@@ -232,7 +240,7 @@
                 })
             },
             loadComments(id) {
-                axios.get('/newsInfoComment/findByForeignId/' + id).then(res => {
+                axios.get('/foodsMenuInfoComment/findByForeignId/' + id).then(res => {
                     if (res.data.code === '0') {
                         this.comments = res.data.data;
                     } else {
@@ -255,6 +263,40 @@
                 axios.get("/logout").then(res => {
                     if(res.data.code === '0') {
                         location.href = '/front/index.html';
+                    } else {
+                        msg('error', res.data.msg);
+                    }
+                })
+            },
+            praise() {
+                if(!this.user || !this.user.name) {
+                    location.href = '/end/page/login.html';
+                    return;
+                }
+                const data = {foodsId: this.obj.id, name: this.obj.name};
+                axios.post("/praiseInfo", data).then(res => {
+                    if(res.data.code === '0') {
+                        if(res.data.data.id) {
+                            msg("success", '点赞成功');
+                            this.load();
+                        }
+                    } else {
+                        msg('error', res.data.msg);
+                    }
+                })
+            },
+            collect() {
+                if(!this.user || !this.user.name) {
+                    location.href = '/end/page/login.html';
+                    return;
+                }
+                const data = {foodsId: this.obj.id, name: this.obj.name};
+                axios.post("/collectInfo", data).then(res => {
+                    if(res.data.code === '0') {
+                        if(res.data.data.id) {
+                            msg("success", '收藏成功');
+                            this.load();
+                        }
                     } else {
                         msg('error', res.data.msg);
                     }

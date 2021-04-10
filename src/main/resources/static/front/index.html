@@ -52,13 +52,14 @@
             <div>
                 <ul style="display: flex; background-color: #f3d19e; height: 50px; border-radius: 8px;font-size: 20px;border: #5bc0de">
                     <li class="nav-item"><a class="active" href="index.html">首页</a></li>
-                    <li class="nav-item"><a href="advertiserInfo.html">系统公告</a></li>
-					<li class="nav-item"><a href="foodsMenuInfo.html">餐馆</a></li>
-					<li class="nav-item"><a href="foodsMaterialInfo.html">人材</a></li>
+                    <li class="nav-item"><a href="advertiserInfo.html">信息发布</a></li>
+					<li class="nav-item"><a href="foodsMenuInfo.html">餐馆发布</a></li>
+					<li class="nav-item"><a href="foodsMaterialInfo.html">新闻图文</a></li>
+<!--					<li class="nav-item"><a href="peopelInfoDetail.html">人才发布</a></li>-->
 					<li class="nav-item"><a href="collectInfo.html">收藏</a></li>
 					<li class="nav-item"><a href="notesInfo.html">笔记</a></li>
 					<li class="nav-item"><a href="newsInfo.html">饮食资讯</a></li>
-					<li class="nav-item"><a href="messageInfo.html">公共留言</a></li>
+					<li class="nav-item"><a href="messageInfo.html">互动社区</a></li>
 
                     <li v-if="isShow" class="nav-item"><a href="/end/page/index.html" target="_blank" style="font-size: 5px">后台管理</a></li>
                 </ul>
@@ -113,9 +114,10 @@
             </div>
         </div>
 
-        <div style="padding: 20px; font-size: 20px; color: orangered"><b>精选菜谱</b></div>
 
         <!--增加，奥里给-->
+<!--
+        <div style="padding: 20px; font-size: 20px; color: orangered"><b>知名厨师</b></div>
         <div>
             <div style="width: 25%; display: inline-block; padding: 10px; text-align: center" v-for="item in peopleData" :key="item.id">
                 <a :href="'peopleInfoDetail.html?id='+item.id">
@@ -125,6 +127,7 @@
                 <div> #{{item.tips}}# {{item.description}}</div>
             </div>
         </div>
+-->
 
     </div>
 </div>

@@ -6,7 +6,7 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="content-type" content="no-cache, must-revalidate"/>
     <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
-    <title>公告</title>
+    <title>信息门户</title>
     <link href="/front/css/bootstrap.min.css" rel="stylesheet">
     <link href="/front/css/my.css" rel="stylesheet">
     <link href="/front/css/nav.css" rel="stylesheet">
@@ -48,17 +48,18 @@
             </div>
 
             <div>
-                <ul style="display: flex; background-color: #f3d19e; height: 50px; border-radius: 8px;font-size: 20px">
+                <ul style="display: flex; background-color: #f3d19e; height: 50px; border-radius: 8px;font-size: 20px;border: #5bc0de">
                     <li class="nav-item"><a href="index.html">首页</a></li>
-                    <li class="nav-item"><a class="active" href="advertiserInfo.html">系统公告</a></li>
-					<li class="nav-item"><a href="foodsMenuInfo.html">菜谱</a></li>
-<!--					<li class="nav-item"><a href="foodsMaterialInfo.html">食材</a></li>-->
-					<li class="nav-item"><a href="collectInfo.html">收藏</a></li>
-					<li class="nav-item"><a href="notesInfo.html">笔记</a></li>
-					<li class="nav-item"><a href="newsInfo.html">饮食资讯</a></li>
-					<li class="nav-item"><a href="messageInfo.html">公共留言</a></li>
+                    <li class="nav-item"><a class="active" href="advertiserInfo.html">信息发布</a></li>
+                    <li class="nav-item"><a href="foodsMenuInfo.html">餐馆发布</a></li>
+                    <li class="nav-item"><a href="foodsMaterialInfo.html">新闻图文</a></li>
+<!--                    <li class="nav-item"><a href="peopelInfoDetail.html">人才发布</a></li>-->
+                    <li class="nav-item"><a href="collectInfo.html">收藏</a></li>
+                    <li class="nav-item"><a href="notesInfo.html">笔记</a></li>
+                    <li class="nav-item"><a href="newsInfo.html">饮食资讯</a></li>
+                    <li class="nav-item"><a href="messageInfo.html">互动社区</a></li>
 
-                    <li v-if="isShow" class="nav-item"><a href="/end/page/index.html" target="_blank">进入后台系统</a></li>
+                    <li v-if="isShow" class="nav-item"><a href="/end/page/index.html" target="_blank" style="font-size: 5px">后台管理</a></li>
                 </ul>
             </div>
 
@@ -79,7 +80,7 @@
 
             <div class="col-md-4">
                 <div class="panel panel-default" id="notice-box">
-                    <div class="panel-heading"><b>公告列表</b></div>
+                    <div class="panel-heading"><b>信息列表</b></div>
                     <div class="panel-body">
                         <ul id="notice-item-box">
                             <li v-for="item in advertiserList">
