@@ -90,8 +90,8 @@
 
 
     <div class="container">
-        <div style="padding: 20px; font-size: 20px; color: orangered"><b>精选菜谱</b></div>
-        <!--菜谱-->
+        <div style="padding: 20px; font-size: 20px; color: orangered"><b>热门菜品</b></div>
+        <!--餐馆-->
         <div>
             <div style="width: 25%; display: inline-block; padding: 10px; text-align: center" v-for="item in tableData" :key="item.id">
                 <a :href="'foodsMenuInfoDetail.html?id='+item.id">
@@ -102,9 +102,9 @@
             </div>
         </div>
 
-        <!-- 食材 -->
-        <div style="padding: 20px; font-size: 20px; color: orangered"><b>热门食材</b></div>
-        <!--食材-->
+        <!-- 新闻 -->
+        <div style="padding: 20px; font-size: 20px; color: orangered"><b>新闻消息</b></div>
+        <!--新闻-->
         <div>
             <div style="width: 20%; display: inline-block; padding: 10px; text-align: center" v-for="item in materialTableData" :key="item.id">
                 <a :href="'foodsMaterialInfoDetail.html?id='+item.id">

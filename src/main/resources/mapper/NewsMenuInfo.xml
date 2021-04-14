@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.NewsMenuInfoDao">
+
+    <select id="findByNameAndId" resultType="com.example.vo.NewsMenuInfoVo">
+        select `news_menu_info`.*, `sub_classify_info`.name as subName from `news_menu_info`
+        left join `sub_classify_info` on `foods_menu_info`.subId = `sub_classify_info`.id
+        where 1 = 1
+        <if test="name != null and name != '' and name != 'all'">
+            and `news_menu_info`.`name` like concat('%', #{name}, '%')
+        </if>
+        <if test="id != null and id != 0">
+            and `news_menu_info`.`id` = #{id}
+        </if>
+        <if test="classifyId != null and classifyId != 0">
+            and `news_menu_info`.`subId` = #{classifyId}
+        </if>
+        order by `news_menu_info`.`id`
+    </select>
+
+    <select id="findByNameAndUser" resultType="com.example.vo.NewsMenuInfoVo">
+        select `news_menu_info`.*, `sub_classify_info`.name as subName from `news_menu_info`
+        left join `sub_classify_info` on `news_menu_info`.subId = `sub_classify_info`.id
+        where 1=1
+        <if test="name != null and name != '' and name != 'all'">
+            and `news_menu_info`.`name` like concat('%', #{name}, '%')
+        </if>
+        <if test="username != null and username != ''">
+            and `news_menu_info`.`username` = #{username}
+        </if>
+        <if test="level != null">
+            and `news_menu_info`.`level` = #{level}
+        </if>
+        order by `news_menu_info`.`id`
+    </select>
+
+</mapper>

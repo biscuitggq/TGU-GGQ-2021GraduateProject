@@ -37,7 +37,6 @@ public class AccountController {
 	@Resource
 	private UserInfoService userInfoService;
 
-
     @PostMapping("/login")
     public Result<Account> login(@RequestBody Account account, HttpServletRequest request) {
         if (StrUtil.isBlank(account.getName()) || StrUtil.isBlank(account.getPassword()) || account.getLevel() == null) {
